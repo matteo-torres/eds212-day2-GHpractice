@@ -1,0 +1,79 @@
+---
+title: "Day 2b Exercises"
+author: "Matteo Torres"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# load packages ----
+library(tidyverse)
+
+# define function ----
+eq1 <- function(x) {
+  3*x^2+4
+}
+
+# create a df with range of values to evaluate our fx across ----
+my_data_range<- data.frame(x= c(1,100))
+
+# plot our fx as a continuous curve over our specified values in our df ----
+ggplot(data= my_data_range, aes(x= x)) +
+  geom_function(fun= eq1)
+```
+
+```{r}
+# define function ----
+eq2 <- function(x) {
+  24-5*x^3+2.1*x^2
+}
+
+# create a df with range of values to evaluate our fx across ----
+my_data_range2<- data.frame(x= c(-50,50))
+
+# plot our fx as a continuous curve over our specified values in our df ----
+ggplot(data= my_data_range2, aes(x= x)) +
+  geom_function(fun= eq2)
+```
+
+```{r}
+# create function C(t) ----
+ct <- function(t) {
+  t^3
+}
+
+# find the derivative of C(t) ----
+dc_dt<- D(expr= expression(t^3), name= "t")
+
+# store the derivativeas a function ----
+dc_dt_fun <- function(t) {
+  3*t^2
+}
+
+# df of values ----
+my_data_range3<- data.frame(t= c(-5,5))
+
+# plot function ----
+ggplot(data= my_data_range3, aes(x= t)) +
+  geom_function(fun= ct, color= "green") +
+  geom_function(fun= dc_dt_fun, color= "purple")
+```
+
+```{r}
+# create the expression ----
+f_xyz<- expression(2*x*y-3*x^2*z^3)
+
+# partial with respect to x ----
+df_dx<- D(expr= f_xyz, name="x")
+df_dx
+
+# partial with respect to y ----
+df_dy<- D(expr= f_xyz, name= "y")
+df_dy
+
+# partial with respect to z
+df_dz<- D(expr= f_xyz, name= "z")
+df_dz
+```
+
